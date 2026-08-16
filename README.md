@@ -9,11 +9,31 @@ Sistema **simples de verdade** para a Clícia organizar a clínica pelo celular:
 
 Tudo em **um único arquivo** (`index.html`), sem instalar nada, sem login, sem internet depois de aberto. Os dados ficam salvos no próprio celular (localStorage).
 
-## Como colocar no ar (GitHub Pages)
+## Como colocar no ar (Vercel)
 
-1. No GitHub, vá em **Settings → Pages**.
-2. Em *Source*, escolha **Deploy from a branch**, selecione a branch principal e a pasta `/ (root)`.
-3. Salve. Em ~1 minuto o site fica disponível em `https://<usuario>.github.io/dashcilia/`.
+O projeto é estático: **não tem build, não tem dependência, não tem variável de ambiente**. É só importar e publicar.
+
+1. Acesse [vercel.com/new](https://vercel.com/new) e conecte a conta do GitHub.
+2. Escolha o repositório **dashcilia** e clique em *Import*.
+3. Deixe tudo como veio — o `vercel.json` já define o projeto como estático:
+   - *Framework Preset*: **Other**
+   - *Build Command*: vazio
+   - *Output Directory*: raiz do projeto
+4. Clique em **Deploy**. Em cerca de 30 segundos o site está no ar.
+
+Depois disso, todo push na branch de produção republica sozinho.
+
+> **Branch de produção:** hoje a branch padrão do repositório é `claude/dashboard-clinica-estetica-r73n6n`, e é dela que a Vercel vai publicar. Se mais tarde você renomear a branch padrão ou passar a usar `main`, ajuste em **Settings → Git → Production Branch** na Vercel.
+
+### Domínio próprio (opcional)
+
+Em **Settings → Domains** dá pra apontar um domínio dela, por exemplo `app.esteticacomclicia.com.br`. A Vercel cuida do certificado HTTPS automaticamente.
+
+### O que o `vercel.json` faz
+
+- Marca o projeto como estático, sem etapa de build.
+- Manda o navegador **sempre buscar a versão mais nova** do `index.html`, para que atualizações apareçam na hora para ela (sem precisar limpar cache).
+- Adiciona dois cabeçalhos básicos de segurança (`X-Content-Type-Options` e `Referrer-Policy`).
 
 ## Como a Clícia usa no celular
 

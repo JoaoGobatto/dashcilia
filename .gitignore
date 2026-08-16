@@ -1,0 +1,17 @@
+# Vercel
+.vercel
+
+# Dependências (o projeto não usa nenhuma, mas evita subir por engano)
+node_modules/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Editores
+.idea/
+.vscode/
+*.swp
+
+# Cópias de segurança baixadas pelo app
+clicia-backup-*.json
