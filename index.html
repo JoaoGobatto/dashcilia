@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#F7F1EA">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Clícia Estética">
+<title>Clícia · Estética</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%239C4F43'/%3E%3Ctext x='50' y='68' font-size='52' text-anchor='middle' fill='%23FFF7F2' font-family='Georgia,serif'%3EC%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7F1EA;
+  --surface:#FFFFFF;
+  --surface-soft:#FDF9F4;
+  --ink:#35281F;
+  --ink-2:#7A6A5D;
+  --ink-3:#A99A8C;
+  --line:#EBDFD3;
+  --accent:#9C4F43;
+  --accent-soft:#F3E2DC;
+  --accent-deep:#7E3E34;
+  --green:#4E7A5A;
+  --green-soft:#E4EEE6;
+  --gold:#B98A44;
+  --gold-soft:#F5EBD9;
+  --radius:20px;
+  --shadow:0 2px 12px rgba(53,40,31,.07);
+  --nav-h:calc(64px + env(safe-area-inset-bottom));
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{font-size:16px}
+body{
+  font-family:'Figtree',sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  min-height:100dvh;
+  padding-bottom:var(--nav-h);
+  background-image:radial-gradient(circle at 85% -5%, #F3E2DC 0%, transparent 40%),
+                   radial-gradient(circle at -10% 20%, #F5EBD9 0%, transparent 35%);
+  background-attachment:fixed;
+}
+h1,h2,h3,.serif{font-family:'Fraunces',serif;font-weight:500}
+button{font-family:inherit;border:none;background:none;cursor:pointer;color:inherit}
+input,select,textarea{font-family:inherit;font-size:1rem;color:var(--ink)}
+
+/* ---------- header ---------- */
+header{
+  padding:calc(18px + env(safe-area-inset-top)) 20px 6px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.brand{line-height:1.1}
+.brand h1{font-size:1.45rem;letter-spacing:.01em}
+.brand h1 em{font-style:italic;color:var(--accent)}
+.brand small{font-size:.72rem;color:var(--ink-3);letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+.menu-btn{
+  width:42px;height:42px;border-radius:50%;background:var(--surface);
+  box-shadow:var(--shadow);display:grid;place-items:center;color:var(--ink-2);
+}
+
+/* ---------- layout ---------- */
+main{padding:10px 16px 24px;max-width:520px;margin:0 auto}
+.view{display:none;animation:fade .25s ease}
+.view.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.card{
+  background:var(--surface);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:16px;margin-bottom:14px;
+}
+.section-title{
+  font-size:1.05rem;margin:18px 4px 10px;display:flex;align-items:center;gap:8px;
+}
+.section-title::after{content:"";flex:1;height:1px;background:var(--line)}
+
+/* ---------- início ---------- */
+.hello{margin:8px 4px 16px}
+.hello h2{font-size:1.6rem}
+.hello p{color:var(--ink-2);font-size:.9rem;margin-top:2px}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tile{
+  background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);
+  padding:14px 16px;
+}
+.tile .lbl{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.tile .val{font-family:'Fraunces',serif;font-size:1.45rem;margin-top:4px}
+.tile.saldo{grid-column:1/-1;background:linear-gradient(135deg,var(--accent) 0%,var(--accent-deep) 100%);color:#FFF7F2}
+.tile.saldo .lbl{color:#EFCFC5}
+.tile.saldo .val{font-size:1.9rem}
+.tile .val.pos{color:var(--green)}
+.tile .val.neg{color:var(--accent)}
+.alert-card{background:var(--gold-soft);box-shadow:none;border:1px solid #EAD9B8}
+.alert-card b{color:#8A6320}
+.alert-card ul{margin:6px 0 0 18px;color:#6E5325;font-size:.92rem}
+
+/* ---------- listas ---------- */
+.item{
+  display:flex;align-items:center;gap:12px;padding:12px 4px;
+  border-bottom:1px solid var(--line);
+}
+.item:last-child{border-bottom:none}
+.item .grow{flex:1;min-width:0}
+.item .t1{font-weight:600;font-size:.98rem}
+.item .t2{font-size:.82rem;color:var(--ink-2);margin-top:1px}
+.time-pill{
+  background:var(--accent-soft);color:var(--accent-deep);font-weight:700;
+  font-size:.82rem;border-radius:10px;padding:6px 9px;min-width:54px;text-align:center;
+}
+.item.done .t1{text-decoration:line-through;color:var(--ink-3)}
+.item.done .time-pill{background:var(--green-soft);color:var(--green)}
+.icon-btn{
+  width:38px;height:38px;border-radius:12px;display:grid;place-items:center;
+  color:var(--ink-3);flex-shrink:0;
+}
+.icon-btn:active{background:var(--surface-soft)}
+.icon-btn.check{color:var(--green);background:var(--green-soft);border-radius:50%}
+.empty{
+  text-align:center;color:var(--ink-3);padding:26px 10px;font-size:.92rem;
+}
+.empty .serif{font-size:1.1rem;color:var(--ink-2);display:block;margin-bottom:4px}
+
+/* ---------- agenda ---------- */
+.week-nav{
+  display:flex;align-items:center;justify-content:space-between;
+  margin:6px 2px 14px;
+}
+.week-nav .serif{font-size:1.05rem}
+.week-nav small{display:block;color:var(--ink-3);font-size:.78rem;text-align:center}
+.week-nav button{
+  width:40px;height:40px;border-radius:12px;background:var(--surface);
+  box-shadow:var(--shadow);font-size:1.1rem;color:var(--ink-2);
+}
+.day-card{margin-bottom:12px}
+.day-head{
+  display:flex;align-items:baseline;gap:8px;margin-bottom:2px;
+}
+.day-head .serif{font-size:1rem}
+.day-head small{color:var(--ink-3);font-size:.78rem}
+.day-card.today{outline:2px solid var(--accent);outline-offset:-2px}
+.day-card.today .day-head .serif{color:var(--accent-deep)}
+.badge-hoje{
+  margin-left:auto;font-size:.68rem;font-weight:700;letter-spacing:.08em;
+  background:var(--accent);color:#fff;border-radius:99px;padding:3px 9px;text-transform:uppercase;
+}
+.day-empty{color:var(--ink-3);font-size:.85rem;padding:8px 0 2px}
+
+/* ---------- estoque ---------- */
+.stepper{display:flex;align-items:center;gap:2px;flex-shrink:0}
+.stepper button{
+  width:38px;height:38px;border-radius:12px;background:var(--surface-soft);
+  border:1px solid var(--line);font-size:1.15rem;font-weight:600;color:var(--ink-2);
+}
+.stepper button:active{background:var(--accent-soft);color:var(--accent-deep)}
+.stepper .qty{
+  min-width:40px;text-align:center;font-family:'Fraunces',serif;font-size:1.15rem;
+}
+.low .qty{color:var(--accent);font-weight:600}
+.low-tag{
+  font-size:.68rem;font-weight:700;color:#8A6320;background:var(--gold-soft);
+  border-radius:99px;padding:2px 8px;margin-left:6px;vertical-align:middle;
+}
+
+/* ---------- caixa ---------- */
+.totais{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px}
+.totais .tile{padding:12px 12px}
+.totais .val{font-size:1.05rem}
+.mov-val{font-weight:700;font-size:.95rem;flex-shrink:0}
+.mov-val.entrada{color:var(--green)}
+.mov-val.saida{color:var(--accent)}
+.dot{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:1rem;flex-shrink:0}
+.dot.entrada{background:var(--green-soft);color:var(--green)}
+.dot.saida{background:var(--accent-soft);color:var(--accent-deep)}
+
+/* ---------- fab ---------- */
+.fab{
+  position:fixed;right:18px;bottom:calc(var(--nav-h) + 16px);
+  width:58px;height:58px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--accent-deep));
+  color:#fff;font-size:1.7rem;box-shadow:0 6px 18px rgba(126,62,52,.4);
+  display:none;place-items:center;z-index:30;transition:transform .15s;
+}
+.fab:active{transform:scale(.92)}
+.fab.show{display:grid}
+
+/* ---------- bottom nav ---------- */
+nav{
+  position:fixed;left:0;right:0;bottom:0;height:var(--nav-h);
+  background:rgba(255,255,255,.92);backdrop-filter:blur(12px);
+  border-top:1px solid var(--line);
+  display:flex;padding-bottom:env(safe-area-inset-bottom);z-index:20;
+}
+nav button{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:3px;font-size:.68rem;font-weight:600;color:var(--ink-3);letter-spacing:.02em;
+}
+nav button svg{width:22px;height:22px}
+nav button.active{color:var(--accent-deep)}
+nav button.active svg{stroke:var(--accent-deep)}
+
+/* ---------- sheet ---------- */
+.overlay{
+  position:fixed;inset:0;background:rgba(53,40,31,.45);z-index:40;
+  opacity:0;pointer-events:none;transition:opacity .2s;
+}
+.overlay.open{opacity:1;pointer-events:auto}
+.sheet{
+  position:fixed;left:0;right:0;bottom:0;z-index:50;
+  background:var(--surface);border-radius:26px 26px 0 0;
+  padding:14px 20px calc(24px + env(safe-area-inset-bottom));
+  transform:translateY(105%);transition:transform .28s cubic-bezier(.32,.72,.2,1);
+  max-height:88dvh;overflow-y:auto;
+}
+.sheet.open{transform:none}
+.sheet .handle{width:42px;height:5px;border-radius:99px;background:var(--line);margin:0 auto 14px}
+.sheet h3{font-size:1.25rem;margin-bottom:14px}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-bottom:5px}
+.field input,.field select{
+  width:100%;padding:13px 14px;border-radius:14px;border:1.5px solid var(--line);
+  background:var(--surface-soft);outline:none;
+}
+.field input:focus,.field select:focus{border-color:var(--accent)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.seg{
+  display:grid;grid-template-columns:1fr 1fr;gap:6px;background:var(--surface-soft);
+  border:1.5px solid var(--line);border-radius:14px;padding:5px;margin-bottom:12px;
+}
+.seg button{padding:11px;border-radius:10px;font-weight:700;font-size:.92rem;color:var(--ink-3)}
+.seg button.on.entrada{background:var(--green-soft);color:var(--green)}
+.seg button.on.saida{background:var(--accent-soft);color:var(--accent-deep)}
+.btn-primary{
+  width:100%;padding:15px;border-radius:16px;margin-top:6px;
+  background:linear-gradient(135deg,var(--accent),var(--accent-deep));
+  color:#fff;font-weight:700;font-size:1rem;letter-spacing:.02em;
+}
+.btn-primary:active{opacity:.9}
+.btn-danger{
+  width:100%;padding:13px;border-radius:16px;margin-top:10px;
+  color:var(--accent);font-weight:700;background:var(--accent-soft);
+}
+.btn-ghost{
+  width:100%;padding:13px;border-radius:16px;margin-top:10px;
+  color:var(--ink-2);font-weight:600;background:var(--surface-soft);border:1.5px solid var(--line);
+}
+
+/* ---------- toast ---------- */
+#toast{
+  position:fixed;left:50%;bottom:calc(var(--nav-h) + 18px);transform:translate(-50%,20px);
+  background:var(--ink);color:#FBF6F0;padding:11px 20px;border-radius:99px;
+  font-size:.9rem;font-weight:600;opacity:0;pointer-events:none;transition:.25s;z-index:60;
+  white-space:nowrap;max-width:92vw;overflow:hidden;text-overflow:ellipsis;
+}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <small>Estética · Palhoça SC</small>
+    <h1>Clícia <em>Castro</em></h1>
+  </div>
+  <button class="menu-btn" id="btnMenu" aria-label="Menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="5" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="12" cy="19" r="1.2"/></svg>
+  </button>
+</header>
+
+<main>
+  <!-- ===================== INÍCIO ===================== -->
+  <section class="view active" id="view-inicio">
+    <div class="hello">
+      <h2 id="helloTitle">Olá, Clícia ✦</h2>
+      <p id="helloDate"></p>
+    </div>
+
+    <div class="tiles">
+      <div class="tile">
+        <div class="lbl">Entrou no mês</div>
+        <div class="val pos" id="tEntrada">R$ 0,00</div>
+      </div>
+      <div class="tile">
+        <div class="lbl">Saiu no mês</div>
+        <div class="val neg" id="tSaida">R$ 0,00</div>
+      </div>
+      <div class="tile saldo">
+        <div class="lbl">Saldo do mês</div>
+        <div class="val" id="tSaldo">R$ 0,00</div>
+      </div>
+    </div>
+
+    <div id="lowStockAlert"></div>
+
+    <h3 class="section-title">Agenda de hoje</h3>
+    <div class="card" id="todayList"></div>
+  </section>
+
+  <!-- ===================== AGENDA ===================== -->
+  <section class="view" id="view-agenda">
+    <div class="week-nav">
+      <button id="prevWeek" aria-label="Semana anterior">‹</button>
+      <div>
+        <span class="serif" id="weekLabel"></span>
+        <small id="weekSub"></small>
+      </div>
+      <button id="nextWeek" aria-label="Próxima semana">›</button>
+    </div>
+    <div id="weekDays"></div>
+  </section>
+
+  <!-- ===================== ESTOQUE ===================== -->
+  <section class="view" id="view-estoque">
+    <h3 class="section-title" style="margin-top:6px">Meus produtos</h3>
+    <div class="card" id="stockList"></div>
+  </section>
+
+  <!-- ===================== CAIXA ===================== -->
+  <section class="view" id="view-caixa">
+    <div class="week-nav">
+      <button id="prevMonth" aria-label="Mês anterior">‹</button>
+      <div><span class="serif" id="monthLabel"></span></div>
+      <button id="nextMonth" aria-label="Próximo mês">›</button>
+    </div>
+    <div class="totais">
+      <div class="tile"><div class="lbl">Entrou</div><div class="val pos" id="cEntrada">—</div></div>
+      <div class="tile"><div class="lbl">Saiu</div><div class="val neg" id="cSaida">—</div></div>
+      <div class="tile"><div class="lbl">Saldo</div><div class="val" id="cSaldo">—</div></div>
+    </div>
+    <div class="card" id="movList"></div>
+  </section>
+</main>
+
+<button class="fab" id="fab" aria-label="Adicionar">+</button>
+
+<nav>
+  <button data-view="inicio" class="active">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
+    Início
+  </button>
+  <button data-view="agenda">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+    Agenda
+  </button>
+  <button data-view="estoque">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5Z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg>
+    Estoque
+  </button>
+  <button data-view="caixa">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="6" width="18" height="13" rx="3"/><path d="M3 11h18M7 16h4"/></svg>
+    Caixa
+  </button>
+</nav>
+
+<div class="overlay" id="overlay"></div>
+
+<!-- sheet: agendamento -->
+<div class="sheet" id="sheetAgenda">
+  <div class="handle"></div>
+  <h3 id="agTitle">Novo agendamento</h3>
+  <div class="field"><label>Cliente</label><input id="agNome" placeholder="Nome da cliente" autocomplete="off"></div>
+  <div class="field"><label>Procedimento</label><input id="agServico" placeholder="Ex.: Microagulhamento, Estrias…" autocomplete="off"></div>
+  <div class="row2">
+    <div class="field"><label>Dia</label><input id="agData" type="date"></div>
+    <div class="field"><label>Hora</label><input id="agHora" type="time"></div>
+  </div>
+  <div class="field"><label>Valor (R$)</label><input id="agValor" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0,00"></div>
+  <button class="btn-primary" id="agSalvar">Salvar</button>
+  <button class="btn-danger" id="agExcluir" style="display:none">Excluir agendamento</button>
+</div>
+
+<!-- sheet: produto -->
+<div class="sheet" id="sheetProduto">
+  <div class="handle"></div>
+  <h3 id="prTitle">Novo produto</h3>
+  <div class="field"><label>Produto</label><input id="prNome" placeholder="Ex.: Agulhas 36p, Sérum clareador…" autocomplete="off"></div>
+  <div class="row2">
+    <div class="field"><label>Quantidade</label><input id="prQtd" type="number" inputmode="numeric" min="0" step="1" placeholder="0"></div>
+    <div class="field"><label>Avisar quando ≤</label><input id="prMin" type="number" inputmode="numeric" min="0" step="1" placeholder="2"></div>
+  </div>
+  <button class="btn-primary" id="prSalvar">Salvar</button>
+  <button class="btn-danger" id="prExcluir" style="display:none">Excluir produto</button>
+</div>
+
+<!-- sheet: movimento -->
+<div class="sheet" id="sheetMov">
+  <div class="handle"></div>
+  <h3>Lançar no caixa</h3>
+  <div class="seg">
+    <button id="segEntrada" class="entrada on">↑ Entrou</button>
+    <button id="segSaida" class="saida">↓ Saiu</button>
+  </div>
+  <div class="field"><label>Descrição</label><input id="mvDesc" placeholder="Ex.: Sessão estrias — Maria" autocomplete="off"></div>
+  <div class="row2">
+    <div class="field"><label>Valor (R$)</label><input id="mvValor" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0,00"></div>
+    <div class="field"><label>Dia</label><input id="mvData" type="date"></div>
+  </div>
+  <button class="btn-primary" id="mvSalvar">Salvar</button>
+</div>
+
+<!-- sheet: menu -->
+<div class="sheet" id="sheetMenu">
+  <div class="handle"></div>
+  <h3>Meus dados</h3>
+  <p style="color:var(--ink-2);font-size:.9rem;margin-bottom:14px">
+    Tudo fica salvo neste celular. De vez em quando, salve uma cópia de segurança —
+    assim você nunca perde nada se trocar de aparelho.
+  </p>
+  <button class="btn-primary" id="btnExport">Salvar cópia de segurança</button>
+  <button class="btn-ghost" id="btnImport">Restaurar cópia salva</button>
+  <input type="file" id="fileImport" accept=".json" style="display:none">
+</div>
+
+<div id="toast"></div>
+
+<script>
+"use strict";
+/* ============ estado ============ */
+const KEY="dashcilia-v1";
+const load=()=>{try{return Object.assign({agenda:[],estoque:[],caixa:[]},JSON.parse(localStorage.getItem(KEY)||"{}"))}catch{return{agenda:[],estoque:[],caixa:[]}}};
+let db=load();
+const save=()=>localStorage.setItem(KEY,JSON.stringify(db));
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+
+/* ============ util ============ */
+const $=s=>document.querySelector(s);
+const BRL=v=>(v||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const pad=n=>String(n).padStart(2,"0");
+const iso=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const fromISO=s=>{const[y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d)};
+const todayISO=()=>iso(new Date());
+const DIAS=["Domingo","Segunda","Terça","Quarta","Quinta","Sexta","Sábado"];
+const MESES=["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+let toastTimer;
+function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove("show"),2200)}
+
+/* ============ navegação ============ */
+const views=["inicio","agenda","estoque","caixa"];
+let current="inicio";
+function show(v){
+  current=v;
+  views.forEach(x=>{
+    $("#view-"+x).classList.toggle("active",x===v);
+  });
+  document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.view===v));
+  $("#fab").classList.toggle("show",v!=="inicio");
+  render();
+  window.scrollTo({top:0});
+}
+document.querySelectorAll("nav button").forEach(b=>b.addEventListener("click",()=>show(b.dataset.view)));
+
+/* ============ sheets ============ */
+const overlay=$("#overlay");
+let openSheetEl=null;
+function openSheet(id){
+  closeSheet();
+  openSheetEl=$("#"+id);
+  overlay.classList.add("open");
+  openSheetEl.classList.add("open");
+}
+function closeSheet(){
+  overlay.classList.remove("open");
+  if(openSheetEl){openSheetEl.classList.remove("open");openSheetEl=null}
+}
+overlay.addEventListener("click",closeSheet);
+$("#btnMenu").addEventListener("click",()=>openSheet("sheetMenu"));
+
+/* ============ FAB ============ */
+$("#fab").addEventListener("click",()=>{
+  if(current==="agenda")openAgendaSheet();
+  else if(current==="estoque")openProdutoSheet();
+  else if(current==="caixa")openMovSheet();
+});
+
+/* ============ AGENDA ============ */
+let weekStart=startOfWeek(new Date());
+function startOfWeek(d){
+  const x=new Date(d);
+  const diff=(x.getDay()+6)%7; // segunda como início
+  x.setDate(x.getDate()-diff);
+  x.setHours(0,0,0,0);
+  return x;
+}
+$("#prevWeek").addEventListener("click",()=>{weekStart.setDate(weekStart.getDate()-7);render()});
+$("#nextWeek").addEventListener("click",()=>{weekStart.setDate(weekStart.getDate()+7);render()});
+
+let editAgendaId=null;
+function openAgendaSheet(id,dataDefault){
+  editAgendaId=id||null;
+  const a=id?db.agenda.find(x=>x.id===id):null;
+  $("#agTitle").textContent=a?"Editar agendamento":"Novo agendamento";
+  $("#agNome").value=a?a.nome:"";
+  $("#agServico").value=a?a.servico:"";
+  $("#agData").value=a?a.data:(dataDefault||todayISO());
+  $("#agHora").value=a?a.hora:"";
+  $("#agValor").value=a&&a.valor?a.valor:"";
+  $("#agExcluir").style.display=a?"block":"none";
+  openSheet("sheetAgenda");
+}
+$("#agSalvar").addEventListener("click",()=>{
+  const nome=$("#agNome").value.trim();
+  const data=$("#agData").value;
+  if(!nome){toast("Escreva o nome da cliente");return}
+  if(!data){toast("Escolha o dia");return}
+  const obj={
+    nome,servico:$("#agServico").value.trim(),data,
+    hora:$("#agHora").value,valor:parseFloat($("#agValor").value)||0
+  };
+  if(editAgendaId){
+    Object.assign(db.agenda.find(x=>x.id===editAgendaId),obj);
+    toast("Agendamento atualizado ✓");
+  }else{
+    db.agenda.push({id:uid(),feito:false,...obj});
+    toast("Agendado ✓");
+  }
+  save();closeSheet();render();
+});
+$("#agExcluir").addEventListener("click",()=>{
+  if(!confirm("Excluir este agendamento?"))return;
+  db.agenda=db.agenda.filter(x=>x.id!==editAgendaId);
+  save();closeSheet();render();toast("Agendamento excluído");
+});
+
+function concluir(id){
+  const a=db.agenda.find(x=>x.id===id);
+  if(!a)return;
+  if(!a.feito){
+    a.feito=true;
+    if(a.valor>0&&!a.lancado&&confirm(`Atendimento concluído!\nLançar ${BRL(a.valor)} como entrada no caixa?`)){
+      db.caixa.push({id:uid(),tipo:"entrada",desc:`${a.servico||"Atendimento"} — ${a.nome}`,valor:a.valor,data:a.data});
+      a.lancado=true;
+      toast("Concluído e lançado no caixa ✓");
+    }else toast("Atendimento concluído ✓");
+  }else{
+    a.feito=false;
+  }
+  save();render();
+}
+
+function agendaItem(a){
+  return `<div class="item ${a.feito?"done":""}">
+    <div class="time-pill">${a.feito?"✓":(a.hora?esc(a.hora):"—")}</div>
+    <div class="grow" onclick="openAgendaSheet('${a.id}')">
+      <div class="t1">${esc(a.nome)}</div>
+      <div class="t2">${esc(a.servico||"")}${a.valor?` · ${BRL(a.valor)}`:""}</div>
+    </div>
+    <button class="icon-btn ${a.feito?"":"check"}" onclick="concluir('${a.id}')" aria-label="Concluir">
+      ${a.feito
+        ?'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 4v5h5"/></svg>'
+        :'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>'}
+    </button>
+  </div>`;
+}
+
+function renderAgenda(){
+  const end=new Date(weekStart);end.setDate(end.getDate()+6);
+  const sameMonth=weekStart.getMonth()===end.getMonth();
+  $("#weekLabel").textContent=sameMonth
+    ?`${weekStart.getDate()} a ${end.getDate()} de ${MESES[end.getMonth()]}`
+    :`${weekStart.getDate()}/${pad(weekStart.getMonth()+1)} a ${end.getDate()}/${pad(end.getMonth()+1)}`;
+  const thisWeek=iso(startOfWeek(new Date()))===iso(weekStart);
+  $("#weekSub").textContent=thisWeek?"esta semana":"";
+  let html="";
+  for(let i=0;i<7;i++){
+    const d=new Date(weekStart);d.setDate(d.getDate()+i);
+    const dIso=iso(d);
+    const isToday=dIso===todayISO();
+    const items=db.agenda.filter(a=>a.data===dIso).sort((a,b)=>(a.hora||"99").localeCompare(b.hora||"99"));
+    html+=`<div class="card day-card ${isToday?"today":""}">
+      <div class="day-head">
+        <span class="serif">${DIAS[d.getDay()]}</span>
+        <small>${d.getDate()}/${pad(d.getMonth()+1)}</small>
+        ${isToday?'<span class="badge-hoje">Hoje</span>':""}
+      </div>
+      ${items.length?items.map(agendaItem).join("")
+        :`<div class="day-empty" onclick="openAgendaSheet(null,'${dIso}')">+ toque para agendar</div>`}
+    </div>`;
+  }
+  $("#weekDays").innerHTML=html;
+}
+
+/* ============ ESTOQUE ============ */
+let editProdId=null;
+function openProdutoSheet(id){
+  editProdId=id||null;
+  const p=id?db.estoque.find(x=>x.id===id):null;
+  $("#prTitle").textContent=p?"Editar produto":"Novo produto";
+  $("#prNome").value=p?p.nome:"";
+  $("#prQtd").value=p?p.qtd:"";
+  $("#prMin").value=p?p.min:"2";
+  $("#prExcluir").style.display=p?"block":"none";
+  openSheet("sheetProduto");
+}
+$("#prSalvar").addEventListener("click",()=>{
+  const nome=$("#prNome").value.trim();
+  if(!nome){toast("Escreva o nome do produto");return}
+  const obj={nome,qtd:Math.max(0,parseInt($("#prQtd").value)||0),min:Math.max(0,parseInt($("#prMin").value)||0)};
+  if(editProdId){
+    Object.assign(db.estoque.find(x=>x.id===editProdId),obj);
+    toast("Produto atualizado ✓");
+  }else{
+    db.estoque.push({id:uid(),...obj});
+    toast("Produto adicionado ✓");
+  }
+  save();closeSheet();render();
+});
+$("#prExcluir").addEventListener("click",()=>{
+  if(!confirm("Excluir este produto?"))return;
+  db.estoque=db.estoque.filter(x=>x.id!==editProdId);
+  save();closeSheet();render();toast("Produto excluído");
+});
+function mudaQtd(id,delta){
+  const p=db.estoque.find(x=>x.id===id);
+  if(!p)return;
+  p.qtd=Math.max(0,p.qtd+delta);
+  save();render();
+}
+function renderEstoque(){
+  const list=[...db.estoque].sort((a,b)=>a.nome.localeCompare(b.nome,"pt-BR"));
+  $("#stockList").innerHTML=list.length?list.map(p=>{
+    const low=p.qtd<=p.min;
+    return `<div class="item ${low?"low":""}">
+      <div class="grow" onclick="openProdutoSheet('${p.id}')">
+        <div class="t1">${esc(p.nome)}${low?'<span class="low-tag">acabando</span>':""}</div>
+        <div class="t2">avisa quando restar ${p.min}</div>
+      </div>
+      <div class="stepper">
+        <button onclick="mudaQtd('${p.id}',-1)" aria-label="Tirar um">−</button>
+        <span class="qty">${p.qtd}</span>
+        <button onclick="mudaQtd('${p.id}',1)" aria-label="Adicionar um">+</button>
+      </div>
+    </div>`;
+  }).join("")
+  :`<div class="empty"><span class="serif">Nenhum produto ainda</span>Toque no + para cadastrar o primeiro</div>`;
+}
+
+/* ============ CAIXA ============ */
+let monthRef=new Date();monthRef.setDate(1);
+$("#prevMonth").addEventListener("click",()=>{monthRef.setMonth(monthRef.getMonth()-1);render()});
+$("#nextMonth").addEventListener("click",()=>{monthRef.setMonth(monthRef.getMonth()+1);render()});
+
+let mvTipo="entrada";
+function setTipo(t){
+  mvTipo=t;
+  $("#segEntrada").classList.toggle("on",t==="entrada");
+  $("#segSaida").classList.toggle("on",t==="saida");
+}
+$("#segEntrada").addEventListener("click",()=>setTipo("entrada"));
+$("#segSaida").addEventListener("click",()=>setTipo("saida"));
+
+function openMovSheet(){
+  setTipo("entrada");
+  $("#mvDesc").value="";
+  $("#mvValor").value="";
+  $("#mvData").value=todayISO();
+  openSheet("sheetMov");
+}
+$("#mvSalvar").addEventListener("click",()=>{
+  const valor=parseFloat($("#mvValor").value)||0;
+  const desc=$("#mvDesc").value.trim();
+  if(!desc){toast("Escreva uma descrição");return}
+  if(valor<=0){toast("Coloque o valor");return}
+  db.caixa.push({id:uid(),tipo:mvTipo,desc,valor,data:$("#mvData").value||todayISO()});
+  save();closeSheet();render();
+  toast(mvTipo==="entrada"?"Entrada lançada ✓":"Saída lançada ✓");
+});
+function delMov(id){
+  if(!confirm("Excluir este lançamento?"))return;
+  db.caixa=db.caixa.filter(x=>x.id!==id);
+  save();render();toast("Lançamento excluído");
+}
+function movsDoMes(ref){
+  const y=ref.getFullYear(),m=ref.getMonth();
+  return db.caixa.filter(x=>{const d=fromISO(x.data);return d.getFullYear()===y&&d.getMonth()===m});
+}
+function renderCaixa(){
+  $("#monthLabel").textContent=`${MESES[monthRef.getMonth()][0].toUpperCase()+MESES[monthRef.getMonth()].slice(1)} de ${monthRef.getFullYear()}`;
+  const movs=movsDoMes(monthRef).sort((a,b)=>b.data.localeCompare(a.data)||b.id.localeCompare(a.id));
+  const ent=movs.filter(x=>x.tipo==="entrada").reduce((s,x)=>s+x.valor,0);
+  const sai=movs.filter(x=>x.tipo==="saida").reduce((s,x)=>s+x.valor,0);
+  $("#cEntrada").textContent=BRL(ent);
+  $("#cSaida").textContent=BRL(sai);
+  $("#cSaldo").textContent=BRL(ent-sai);
+  $("#movList").innerHTML=movs.length?movs.map(x=>{
+    const d=fromISO(x.data);
+    return `<div class="item">
+      <div class="dot ${x.tipo}">${x.tipo==="entrada"?"↑":"↓"}</div>
+      <div class="grow">
+        <div class="t1">${esc(x.desc)}</div>
+        <div class="t2">${d.getDate()}/${pad(d.getMonth()+1)}</div>
+      </div>
+      <span class="mov-val ${x.tipo}">${x.tipo==="entrada"?"+":"−"} ${BRL(x.valor)}</span>
+      <button class="icon-btn" onclick="delMov('${x.id}')" aria-label="Excluir">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg>
+      </button>
+    </div>`;
+  }).join("")
+  :`<div class="empty"><span class="serif">Nenhum lançamento neste mês</span>Toque no + para lançar o que entrou ou saiu</div>`;
+}
+
+/* ============ INÍCIO ============ */
+function renderInicio(){
+  const now=new Date();
+  const h=now.getHours();
+  $("#helloTitle").textContent=(h<12?"Bom dia":h<18?"Boa tarde":"Boa noite")+", Clícia ✦";
+  $("#helloDate").textContent=`${DIAS[now.getDay()]}, ${now.getDate()} de ${MESES[now.getMonth()]}`;
+
+  const movs=movsDoMes(now);
+  const ent=movs.filter(x=>x.tipo==="entrada").reduce((s,x)=>s+x.valor,0);
+  const sai=movs.filter(x=>x.tipo==="saida").reduce((s,x)=>s+x.valor,0);
+  $("#tEntrada").textContent=BRL(ent);
+  $("#tSaida").textContent=BRL(sai);
+  $("#tSaldo").textContent=BRL(ent-sai);
+
+  const low=db.estoque.filter(p=>p.qtd<=p.min);
+  $("#lowStockAlert").innerHTML=low.length
+    ?`<div class="card alert-card"><b>⚠ Produtos acabando</b><ul>${low.map(p=>`<li>${esc(p.nome)} — restam ${p.qtd}</li>`).join("")}</ul></div>`
+    :"";
+
+  const hoje=db.agenda.filter(a=>a.data===todayISO()).sort((a,b)=>(a.hora||"99").localeCompare(b.hora||"99"));
+  $("#todayList").innerHTML=hoje.length?hoje.map(agendaItem).join("")
+    :`<div class="empty"><span class="serif">Dia livre por enquanto</span>Vá na Agenda para marcar atendimentos</div>`;
+}
+
+/* ============ backup ============ */
+$("#btnExport").addEventListener("click",()=>{
+  const blob=new Blob([JSON.stringify(db,null,2)],{type:"application/json"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download=`clicia-backup-${todayISO()}.json`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+  toast("Cópia de segurança salva ✓");
+});
+$("#btnImport").addEventListener("click",()=>$("#fileImport").click());
+$("#fileImport").addEventListener("change",e=>{
+  const f=e.target.files[0];
+  if(!f)return;
+  const r=new FileReader();
+  r.onload=()=>{
+    try{
+      const data=JSON.parse(r.result);
+      if(!Array.isArray(data.agenda)||!Array.isArray(data.estoque)||!Array.isArray(data.caixa))throw 0;
+      if(!confirm("Substituir os dados atuais pela cópia salva?"))return;
+      db=data;save();closeSheet();render();
+      toast("Dados restaurados ✓");
+    }catch{toast("Arquivo inválido")}
+  };
+  r.readAsText(f);
+  e.target.value="";
+});
+
+/* ============ render geral ============ */
+function render(){
+  if(current==="inicio")renderInicio();
+  else if(current==="agenda")renderAgenda();
+  else if(current==="estoque")renderEstoque();
+  else if(current==="caixa")renderCaixa();
+}
+window.openAgendaSheet=openAgendaSheet;
+window.concluir=concluir;
+window.openProdutoSheet=openProdutoSheet;
+window.mudaQtd=mudaQtd;
+window.delMov=delMov;
+render();
+</script>
+</body>
+</html>
